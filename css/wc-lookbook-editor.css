@@ -1,0 +1,67 @@
+#lookbook-metabox .inside {
+  padding: 5px 10px 10px;
+}
+#lookbook-metabox .image {
+  position: relative;
+}
+#lookbook-metabox .image img {
+  width: 100%;
+  margin: 0;
+  display: block;
+}
+#lookbook-metabox .image-tags {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+#lookbook-metabox .image-tags .tag {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  background: black;
+  display: inline-block;
+  opacity: .8;
+  border-radius: 5px;
+}
+#lookbook-metabox .image-tags .tag .name {
+  display: inline-block;
+  padding: 5px 25px 5px 10px;
+  color: white;
+}
+#lookbook-metabox .image-tags .tag a {
+  text-decoration: none;
+  color: white;
+}
+#lookbook-metabox .image-tags .tag .remove {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+}
+#lookbook-metabox .image-tags .tag .remove .label {
+  display: none;
+}
+#lookbook-metabox .image-tags .tag .remove:after {
+  content: "\f335";
+  font-family: 'Dashicons';
+}
+#lookbook-metabox .image-actions {
+  padding: 10px 90px 10px 10px;
+  border: 1px solid #efefef;
+  position: relative;
+}
+#lookbook-metabox .image-actions .image-description {
+  width: 100%;
+}
+#lookbook-metabox .image-actions .image-remove {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+#lookbook-metabox .images-actions {
+  padding: 20px 0 0px;
+}
+#lookbook-metabox .images-actions a {
+  margin-right: 10px;
+}

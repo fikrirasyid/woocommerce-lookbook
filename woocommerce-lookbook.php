@@ -19,6 +19,11 @@ if (!defined('WC_LOOKBOOK_URL'))
     define('WC_LOOKBOOK_URL', plugin_dir_url( __FILE__ ));	 
 
 /**
+ * Requiring external files
+ */
+require_once( 'includes/class-woocommerce-lookbook-editor.php' );
+
+/**
  * Setup plugin
  */
 class WC_Lookbook_Setup{

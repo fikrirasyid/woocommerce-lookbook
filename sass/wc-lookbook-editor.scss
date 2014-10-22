@@ -1,0 +1,83 @@
+#lookbook-metabox{
+	.inside{
+		padding: 5px 10px 10px;
+	}
+
+	.image{
+		position: relative;
+
+		img{
+			width: 100%;
+			margin: 0;
+			display: block;
+		}
+	}
+
+	.image-tags{
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+
+		.tag{
+			position: absolute;
+			top: 0%;
+			left: 0%;
+			background: black;
+			display: inline-block;
+			opacity: .8;
+			border-radius: 5px;
+	
+			.name{
+				display: inline-block;
+				padding:5px 25px 5px 10px;
+				color: white;
+			}
+
+			a{
+				text-decoration: none;
+				color: white;
+			}
+
+			.remove{
+				position: absolute;
+				top: 7px;
+				right: 7px;
+
+				.label{
+					display: none;
+				}
+
+				&:after{
+					content: "\f335";
+					font-family: 'Dashicons';
+				}
+			}
+		}
+	}
+
+	.image-actions{
+		padding: 10px 90px 10px 10px;
+		border: 1px solid #efefef;
+		position: relative;
+
+		.image-description{
+			width: 100%;
+		}
+
+		.image-remove{
+			position: absolute;
+			top: 10px;
+			right: 10px;
+		}
+	}
+
+	.images-actions{
+		padding: 20px 0 0px;
+
+		a{
+			margin-right: 10px;
+		}
+	}
+}
