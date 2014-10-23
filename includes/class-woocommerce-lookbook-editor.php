@@ -104,6 +104,10 @@ class WC_Lookbook_Editor{
 
 			</div>
 
+			<div class="no-image-notice">
+				<p><?php _e( "There is no image for this lookbook yet. Click 'Add Image' button below to start", "woocommerce-lookbook" ); ?></p>
+			</div>
+
 			<div class="images-actions">
 					<a href="#" class="image-add button button-large button-primary"><?php _e( 'Add Image', 'woocommerce-lookbook' ); ?></a>				
 					<a href="#" class="image-remove-all button button-large"><?php _e( 'Remove All Images', 'woocommerce-lookbook' ); ?></a>				

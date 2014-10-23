@@ -86,6 +86,20 @@
 		}
 	}
 
+	.no-image-notice{
+		display: block;
+		border: 3px dashed #cfcfcf;
+		color: #bfbfbf;
+		padding: 20px;
+		text-align: center;
+		margin: 0;
+
+		p{
+			margin: 0;
+			font-size: 18px;
+		}
+	}
+
 	.images-actions{
 		padding: 20px 0 0px;
 

@@ -70,6 +70,18 @@
   top: 10px;
   right: 10px;
 }
+#lookbook-metabox .no-image-notice {
+  display: block;
+  border: 3px dashed #cfcfcf;
+  color: #bfbfbf;
+  padding: 20px;
+  text-align: center;
+  margin: 0;
+}
+#lookbook-metabox .no-image-notice p {
+  margin: 0;
+  font-size: 18px;
+}
 #lookbook-metabox .images-actions {
   padding: 20px 0 0px;
 }
