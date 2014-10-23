@@ -36,7 +36,7 @@ class WC_Lookbook_Editor{
 
 			if( 'lookbook' == $screen->post_type ){
 				wp_enqueue_style( 'wc_lookbook_editor', WC_LOOKBOOK_URL . 'css/wc-lookbook-editor.css', array(), false, 'all' );
-		        wp_enqueue_script( 'wc_lookbook_editor', WC_LOOKBOOK_URL . 'js/wc-lookbook-editor.js', array( 'jquery' ), '0.1', true );
+		        wp_enqueue_script( 'wc_lookbook_editor', WC_LOOKBOOK_URL . 'js/wc-lookbook-editor.js', array( 'jquery', 'jquery-ui-sortable' ), '0.1', true );
 			}
 		}
 	}
@@ -68,6 +68,9 @@ class WC_Lookbook_Editor{
 		$lookbook = get_post_meta( $post->ID, "{$this->prefix}data", true );
 		?>
 			<div class="images-wrap">
+				
+				<?php for ($i=0; $i < 6; $i++) : ?>
+
 				<div class="image-wrap">
 					<div class="image">
 						<img src="http://localhost/hijapedia/store/wp-content/uploads/sites/2/2014/03/MG_8274.jpg" alt="">						
@@ -82,11 +85,23 @@ class WC_Lookbook_Editor{
 						</div><!-- .image-tags -->						
 					</div><!-- .image -->
 
+					<div class="image-fields">
+						<input type="number" name="lookbook[][%image_id%]['image_id']" value="%image_id%" />
+						<!-- 						
+						<input type="number" name="lookbook[][%image_id%]['tags'][%product_id%]['product_id']" value="%product_id%" />
+						<input type="number" name="lookbook[][%image_id%]['tags'][%product_id%]['offset_x']" value="%offset_x%" />
+						<input type="number" name="lookbook[][%image_id%]['tags'][%product_id%]['offset_y']" value="%offset_y%" /> 
+						-->
+					</div>
+
 					<div class="image-actions">
-						<input type="text" class="input-text image-description" placeholder="<?php _e( 'Describe this image', 'woocommerce-lookbook' ); ?>">
+						<input type="text" name="lookbook[][%image_id%]['image_caption']" class="input-text image-caption" placeholder="<?php _e( 'Describe this image', 'woocommerce-lookbook' ); ?>">
 						<a href="#" class="image-remove button"><?php _e( 'Remove', 'woocommerce-lookbook' ); ?></a>
 					</div>
 				</div>				
+
+				<?php endfor; ?>
+
 			</div>
 
 			<div class="images-actions">

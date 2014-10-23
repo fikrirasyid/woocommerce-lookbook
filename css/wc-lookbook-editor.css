@@ -1,5 +1,13 @@
 #lookbook-metabox .inside {
-  padding: 5px 10px 10px;
+  padding: 15px 10px 10px;
+}
+#lookbook-metabox .image-wrap {
+  margin-bottom: 20px;
+  margin-left: 1%;
+  width: 48.5%;
+  display: inline-block;
+  background: white;
+  box-shadow: 0 1px 2px #f9f9f9;
 }
 #lookbook-metabox .image {
   position: relative;
@@ -46,12 +54,15 @@
   content: "\f335";
   font-family: 'Dashicons';
 }
+#lookbook-metabox .image-fields {
+  display: none;
+}
 #lookbook-metabox .image-actions {
   padding: 10px 90px 10px 10px;
   border: 1px solid #efefef;
   position: relative;
 }
-#lookbook-metabox .image-actions .image-description {
+#lookbook-metabox .image-actions .image-caption {
   width: 100%;
 }
 #lookbook-metabox .image-actions .image-remove {

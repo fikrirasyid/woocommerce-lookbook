@@ -1,6 +1,15 @@
 #lookbook-metabox{
 	.inside{
-		padding: 5px 10px 10px;
+		padding: 15px 10px 10px;
+	}
+
+	.image-wrap{
+		margin-bottom: 20px;		
+		margin-left: 1%;
+		width: 48.5%;
+		display: inline-block;
+		background: white;
+		box-shadow: 0 1px 2px #f9f9f9;
 	}
 
 	.image{
@@ -57,12 +66,16 @@
 		}
 	}
 
+	.image-fields{
+		display: none;
+	}
+
 	.image-actions{
 		padding: 10px 90px 10px 10px;
 		border: 1px solid #efefef;
 		position: relative;
 
-		.image-description{
+		.image-caption{
 			width: 100%;
 		}
 
