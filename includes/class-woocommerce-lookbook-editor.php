@@ -112,6 +112,52 @@ class WC_Lookbook_Editor{
 					<a href="#" class="image-add button button-large button-primary"><?php _e( 'Add Image', 'woocommerce-lookbook' ); ?></a>				
 					<a href="#" class="image-remove-all button button-large"><?php _e( 'Remove All Images', 'woocommerce-lookbook' ); ?></a>				
 			</div>
+	
+			<!-- Template for image-wrap -->
+			<script id="template-image-wrap" type="text/template">
+				<div class="image-wrap">
+					<div class="image">
+						<img src="http://localhost/hijapedia/store/wp-content/uploads/sites/2/2014/03/MG_8274.jpg" alt="">						
+
+						<div class="image-tags">
+							<div class="tag">
+								<span class="name">Dress Way</span>
+								<span class="actions">
+									<a href="#" class="remove"><span class="label">Remove</span></a>
+								</span>
+							</div>
+						</div><!-- .image-tags -->						
+					</div><!-- .image -->
+
+					<div class="image-fields">
+						<input type="number" name="lookbook[][%image_id%]['image_id']" value="%image_id%" />
+					</div>
+
+					<div class="image-actions">
+						<input type="text" name="lookbook[][%image_id%]['image_caption']" class="input-text image-caption" placeholder="<?php _e( 'Describe this image', 'woocommerce-lookbook' ); ?>">
+						<a href="#" class="image-remove button"><?php _e( 'Remove', 'woocommerce-lookbook' ); ?></a>
+					</div>
+				</div>		
+			</script>
+
+			<!-- Template for product tag -->
+			<script id="template-image-tag" type="text/template">
+				<div class="tag">
+					<span class="name">%product_name%</span>
+					<span class="actions">
+						<a href="#" class="remove"><span class="label">Remove</span></a>
+					</span>
+				</div>
+			</script>
+
+			<!-- Template for appending product tag -->
+			<script id="template-image-field-tag" type="text/template">
+				<div class="image-field-tag" data-image-id="%image_id%" data-product-id="%product_id%">
+					<input type="number" name="lookbook[][%image_id%]['tags'][%product_id%]['product_id']" value="%product_id%" />
+					<input type="number" name="lookbook[][%image_id%]['tags'][%product_id%]['offset_x']" value="%offset_x%" />
+					<input type="number" name="lookbook[][%image_id%]['tags'][%product_id%]['offset_y']" value="%offset_y%" /> 					
+				</div>
+			</script>
 		<?php
 		wp_nonce_field( "{$this->prefix}meta_box", "{$this->prefix}meta_box" );
 	}
