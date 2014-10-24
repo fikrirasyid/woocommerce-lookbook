@@ -92,7 +92,10 @@ class WC_Lookbook_Editor{
 					<div class="image">
 						<div class="wc-lookbook-inside">
 							<img src="" alt="">				
-						</div>		
+						</div>			
+
+						<div class="wc-lookbook-image-mousetrap">
+						</div><!-- .wc-lookbook-image-tags -->					
 
 						<div class="wc-lookbook-image-tags">
 						</div><!-- .wc-lookbook-image-tags -->						
