@@ -90,7 +90,9 @@ class WC_Lookbook_Editor{
 			<script id="template-wc-lookbook-image-wrap" type="text/template">
 				<div class="wc-lookbook-image-wrap">
 					<div class="image">
-						<img src="" alt="">						
+						<div class="wc-lookbook-inside">
+							<img src="" alt="">				
+						</div>		
 
 						<div class="wc-lookbook-image-tags">
 						</div><!-- .wc-lookbook-image-tags -->						
@@ -101,8 +103,10 @@ class WC_Lookbook_Editor{
 					</div>
 
 					<div class="wc-lookbook-image-actions">
-						<input type="text" name="lookbook[][%image_id%]['image_caption']" class="input-text wc-lookbook-image-caption" placeholder="<?php _e( 'Describe this image', 'woocommerce-lookbook' ); ?>">
-						<a href="#" class="wc-lookbook-image-remove button"><?php _e( 'Remove', 'woocommerce-lookbook' ); ?></a>
+						<div class="wc-lookbook-inside">
+							<input type="text" name="lookbook[][%image_id%]['image_caption']" class="input-text wc-lookbook-image-caption" placeholder="<?php _e( 'Describe this image', 'woocommerce-lookbook' ); ?>">
+							<a href="#" class="wc-lookbook-image-remove button"><?php _e( 'Remove', 'woocommerce-lookbook' ); ?></a>
+						</div>
 					</div>
 				</div>		
 			</script>

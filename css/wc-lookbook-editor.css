@@ -10,8 +10,8 @@
 }
 #lookbook-metabox .wc-lookbook-image-wrap {
   margin-bottom: 20px;
-  margin-left: 1%;
-  width: 48.5%;
+  width: 100%;
+  border: 1px solid #efefef;
   display: inline-block;
   background: white;
   box-shadow: 0 1px 2px #f9f9f9;
@@ -19,10 +19,16 @@
 }
 #lookbook-metabox .image {
   position: relative;
+  float: left;
+  width: 50%;
+}
+#lookbook-metabox .image .wc-lookbook-inside {
+  padding: 10px;
+  display: block;
+  border-right: 1px solid #dfdfdf;
 }
 #lookbook-metabox .image img {
   width: 100%;
-  margin: 0;
   display: block;
 }
 #lookbook-metabox .wc-lookbook-image-tags {
@@ -66,17 +72,20 @@
   display: none;
 }
 #lookbook-metabox .wc-lookbook-image-actions {
-  padding: 10px 90px 10px 10px;
-  border: 1px solid #efefef;
   position: relative;
+  float: left;
+  width: 49%;
+}
+#lookbook-metabox .wc-lookbook-image-actions .wc-lookbook-inside {
+  display: block;
+  position: relative;
+  padding: 10px;
 }
 #lookbook-metabox .wc-lookbook-image-actions .wc-lookbook-image-caption {
   width: 100%;
 }
 #lookbook-metabox .wc-lookbook-image-actions .wc-lookbook-image-remove {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  margin-top: 10px;
 }
 #lookbook-metabox .no-wc-lookbook-image-notice {
   display: block;
