@@ -1,9 +1,9 @@
 jQuery(document).ready(function($){
 	/**
-	* If there's an image already, hide the no-image-notice
+	* If there's an image already, hide the no-wc-lookbook-image-notice
 	*/
-	if( $('.image-wrap').length > 0 ){
-		$('.no-image-notice').hide();
+	if( $('.wc-lookbook-image-wrap').length > 0 ){
+		$('.no-wc-lookbook-image-notice').hide();
 	}
 
 	/**
@@ -14,7 +14,7 @@ jQuery(document).ready(function($){
 	/**
 	* Adding image mechanism
 	*/
-	$('body').on( 'click', '.image-add', function(e){
+	$('body').on( 'click', '.wc-lookbook-image-add', function(e){
 		e.preventDefault();
 
 		var file_frame;
@@ -36,7 +36,7 @@ jQuery(document).ready(function($){
 			attachment = file_frame.state().get('selection').first().toJSON();
  
 				// Prepare template
-			image_wrap = $('#template-image-wrap').clone().html();
+			image_wrap = $('#template-wc-lookbook-image-wrap').clone().html();
 			image_wrap.replace( '%image_id%', attachment.id );
 
 			// Prepare input name
@@ -47,13 +47,13 @@ jQuery(document).ready(function($){
 			$('.images-wrap').append( image_wrap );
 
 			// Modify data
-			$('.images-wrap .image-wrap:last, .images-wrap .image-wrap:last .image-tags').attr({ 'data-image-id' : attachment.id });
-			$('.images-wrap .image-wrap:last img').attr({ 'src' : attachment.url, 'alt' : attachment.caption });
-			$('.images-wrap .image-wrap:last .image-id').attr({ 'name' : name_image_id, 'value' : attachment.id });
-			$('.images-wrap .image-wrap:last .image-caption').attr({ 'name' : name_image_caption, 'value' : attachment.caption });
+			$('.images-wrap .wc-lookbook-image-wrap:last, .images-wrap .wc-lookbook-image-wrap:last .wc-lookbook-image-tags').attr({ 'data-image-id' : attachment.id });
+			$('.images-wrap .wc-lookbook-image-wrap:last img').attr({ 'src' : attachment.url, 'alt' : attachment.caption });
+			$('.images-wrap .wc-lookbook-image-wrap:last .wc-lookbook-image-id').attr({ 'name' : name_image_id, 'value' : attachment.id });
+			$('.images-wrap .wc-lookbook-image-wrap:last .wc-lookbook-image-caption').attr({ 'name' : name_image_caption, 'value' : attachment.caption });
 
 			// Hide no image notice
-			$('.no-image-notice').hide();
+			$('.no-wc-lookbook-image-notice').hide();
 	    });
 	 
 	    // Finally, open the modal
@@ -63,30 +63,30 @@ jQuery(document).ready(function($){
 	/**
 	* Removing image mechanism
 	*/
-	$('body').on( 'click', '.image-remove', function(e){
+	$('body').on( 'click', '.wc-lookbook-image-remove', function(e){
 		e.preventDefault();
 
-		$(this).parents('.image-wrap').remove();
+		$(this).parents('.wc-lookbook-image-wrap').remove();
 
 		/**
-		* Display no image yet notice if there's no more image-wrap
+		* Display no image yet notice if there's no more wc-lookbook-image-wrap
 		*/
-		if( $('.image-wrap').length == 0 ){
-			$('.no-image-notice').show();
+		if( $('.wc-lookbook-image-wrap').length == 0 ){
+			$('.no-wc-lookbook-image-notice').show();
 		}
 	});
 
 	/**
 	* Removing all image mechanism
 	*/
-	$('body').on( 'click', '.image-remove-all', function(e){
+	$('body').on( 'click', '.wc-lookbook-image-remove-all', function(e){
 		e.preventDefault();
 
-		$('.image-wrap').remove();
+		$('.wc-lookbook-image-wrap').remove();
 
 		/**
 		* Display no image yet notice
 		*/
-		$('.no-image-notice').show();
+		$('.no-wc-lookbook-image-notice').show();
 	});
 });

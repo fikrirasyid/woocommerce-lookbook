@@ -20,7 +20,7 @@
 		@include clearfix;
 	}
 
-	.image-wrap{
+	.wc-lookbook-image-wrap{
 		margin-bottom: 20px;		
 		margin-left: 1%;
 		width: 48.5%;
@@ -40,7 +40,7 @@
 		}
 	}
 
-	.image-tags{
+	.wc-lookbook-image-tags{
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -84,27 +84,27 @@
 		}
 	}
 
-	.image-fields{
+	.wc-lookbook-image-fields{
 		display: none;
 	}
 
-	.image-actions{
+	.wc-lookbook-image-actions{
 		padding: 10px 90px 10px 10px;
 		border: 1px solid #efefef;
 		position: relative;
 
-		.image-caption{
+		.wc-lookbook-image-caption{
 			width: 100%;
 		}
 
-		.image-remove{
+		.wc-lookbook-image-remove{
 			position: absolute;
 			top: 10px;
 			right: 10px;
 		}
 	}
 
-	.no-image-notice{
+	.no-wc-lookbook-image-notice{
 		display: block;
 		border: 3px dashed #cfcfcf;
 		color: #bfbfbf;

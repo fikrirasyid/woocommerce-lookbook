@@ -71,38 +71,38 @@ class WC_Lookbook_Editor{
 				
 			</div>
 
-			<div class="no-image-notice">
+			<div class="no-wc-lookbook-image-notice">
 				<p><?php _e( "There is no image for this lookbook yet. Click 'Add Image' button below to start", "woocommerce-lookbook" ); ?></p>
 			</div>
 
 			<div class="images-actions">
-					<a href="#" class="image-add button button-large button-primary"><?php _e( 'Add Image', 'woocommerce-lookbook' ); ?></a>				
-					<a href="#" class="image-remove-all button button-large"><?php _e( 'Remove All Images', 'woocommerce-lookbook' ); ?></a>				
+					<a href="#" class="wc-lookbook-image-add button button-large button-primary"><?php _e( 'Add Image', 'woocommerce-lookbook' ); ?></a>				
+					<a href="#" class="wc-lookbook-image-remove-all button button-large"><?php _e( 'Remove All Images', 'woocommerce-lookbook' ); ?></a>				
 			</div>
 	
-			<!-- Template for image-wrap -->
-			<script id="template-image-wrap" type="text/template">
-				<div class="image-wrap">
+			<!-- Template for wc-lookbook-image-wrap -->
+			<script id="template-wc-lookbook-image-wrap" type="text/template">
+				<div class="wc-lookbook-image-wrap">
 					<div class="image">
 						<img src="" alt="">						
 
-						<div class="image-tags">
-						</div><!-- .image-tags -->						
+						<div class="wc-lookbook-image-tags">
+						</div><!-- .wc-lookbook-image-tags -->						
 					</div><!-- .image -->
 
-					<div class="image-fields">
-						<input type="number" class="image-id" name="lookbook[][%image_id%]['image_id']" value="%image_id%" />
+					<div class="wc-lookbook-image-fields">
+						<input type="number" class="wc-lookbook-image-id" name="lookbook[][%image_id%]['image_id']" value="%image_id%" />
 					</div>
 
-					<div class="image-actions">
-						<input type="text" name="lookbook[][%image_id%]['image_caption']" class="input-text image-caption" placeholder="<?php _e( 'Describe this image', 'woocommerce-lookbook' ); ?>">
-						<a href="#" class="image-remove button"><?php _e( 'Remove', 'woocommerce-lookbook' ); ?></a>
+					<div class="wc-lookbook-image-actions">
+						<input type="text" name="lookbook[][%image_id%]['image_caption']" class="input-text wc-lookbook-image-caption" placeholder="<?php _e( 'Describe this image', 'woocommerce-lookbook' ); ?>">
+						<a href="#" class="wc-lookbook-image-remove button"><?php _e( 'Remove', 'woocommerce-lookbook' ); ?></a>
 					</div>
 				</div>		
 			</script>
 
 			<!-- Template for product tag -->
-			<script id="template-image-tag" type="text/template">
+			<script id="template-wc-lookbook-image-tag" type="text/template">
 				<div class="tag">
 					<span class="name">%product_name%</span>
 					<span class="actions">
@@ -112,8 +112,8 @@ class WC_Lookbook_Editor{
 			</script>
 
 			<!-- Template for appending product tag -->
-			<script id="template-image-field-tag" type="text/template">
-				<div class="image-field-tag" data-image-id="%image_id%" data-product-id="%product_id%">
+			<script id="template-wc-lookbook-image-field-tag" type="text/template">
+				<div class="wc-lookbook-image-field-tag" data-image-id="%image_id%" data-product-id="%product_id%">
 					<input type="number" name="lookbook[][%image_id%]['tags'][%product_id%]['product_id']" value="%product_id%" />
 					<input type="number" name="lookbook[][%image_id%]['tags'][%product_id%]['offset_x']" value="%offset_x%" />
 					<input type="number" name="lookbook[][%image_id%]['tags'][%product_id%]['offset_y']" value="%offset_y%" /> 					

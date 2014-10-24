@@ -8,7 +8,7 @@
   clear: both;
   visibility: hidden;
 }
-#lookbook-metabox .image-wrap {
+#lookbook-metabox .wc-lookbook-image-wrap {
   margin-bottom: 20px;
   margin-left: 1%;
   width: 48.5%;
@@ -25,14 +25,14 @@
   margin: 0;
   display: block;
 }
-#lookbook-metabox .image-tags {
+#lookbook-metabox .wc-lookbook-image-tags {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
 }
-#lookbook-metabox .image-tags .tag {
+#lookbook-metabox .wc-lookbook-image-tags .tag {
   position: absolute;
   top: 0%;
   left: 0%;
@@ -41,44 +41,44 @@
   opacity: .8;
   border-radius: 5px;
 }
-#lookbook-metabox .image-tags .tag .name {
+#lookbook-metabox .wc-lookbook-image-tags .tag .name {
   display: inline-block;
   padding: 5px 25px 5px 10px;
   color: white;
 }
-#lookbook-metabox .image-tags .tag a {
+#lookbook-metabox .wc-lookbook-image-tags .tag a {
   text-decoration: none;
   color: white;
 }
-#lookbook-metabox .image-tags .tag .remove {
+#lookbook-metabox .wc-lookbook-image-tags .tag .remove {
   position: absolute;
   top: 7px;
   right: 7px;
 }
-#lookbook-metabox .image-tags .tag .remove .label {
+#lookbook-metabox .wc-lookbook-image-tags .tag .remove .label {
   display: none;
 }
-#lookbook-metabox .image-tags .tag .remove:after {
+#lookbook-metabox .wc-lookbook-image-tags .tag .remove:after {
   content: "\f335";
   font-family: 'Dashicons';
 }
-#lookbook-metabox .image-fields {
+#lookbook-metabox .wc-lookbook-image-fields {
   display: none;
 }
-#lookbook-metabox .image-actions {
+#lookbook-metabox .wc-lookbook-image-actions {
   padding: 10px 90px 10px 10px;
   border: 1px solid #efefef;
   position: relative;
 }
-#lookbook-metabox .image-actions .image-caption {
+#lookbook-metabox .wc-lookbook-image-actions .wc-lookbook-image-caption {
   width: 100%;
 }
-#lookbook-metabox .image-actions .image-remove {
+#lookbook-metabox .wc-lookbook-image-actions .wc-lookbook-image-remove {
   position: absolute;
   top: 10px;
   right: 10px;
 }
-#lookbook-metabox .no-image-notice {
+#lookbook-metabox .no-wc-lookbook-image-notice {
   display: block;
   border: 3px dashed #cfcfcf;
   color: #bfbfbf;
@@ -86,7 +86,7 @@
   text-align: center;
   margin: 0;
 }
-#lookbook-metabox .no-image-notice p {
+#lookbook-metabox .no-wc-lookbook-image-notice p {
   margin: 0;
   font-size: 18px;
 }
