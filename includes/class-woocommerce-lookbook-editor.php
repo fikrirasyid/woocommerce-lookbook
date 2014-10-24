@@ -35,8 +35,14 @@ class WC_Lookbook_Editor{
 			$screen = get_current_screen();
 
 			if( 'lookbook' == $screen->post_type ){
+
 				wp_enqueue_style( 'wc_lookbook_editor', WC_LOOKBOOK_URL . 'css/wc-lookbook-editor.css', array(), false, 'all' );
 		        wp_enqueue_script( 'wc_lookbook_editor', WC_LOOKBOOK_URL . 'js/wc-lookbook-editor.js', array( 'jquery', 'jquery-ui-sortable' ), '0.1', true );
+				
+				$wc_lookbook_editor_params = array(
+					'no_duplicate_message' => __( '%filename% image have been added to this lookbook before. You cannot have one image more than once in a lookbook.', 'woocommerce-lookbook')
+				);
+				wp_localize_script( 'wc_lookbook_editor', 'wc_lookbook_editor_params', $wc_lookbook_editor_params );
 			}
 		}
 	}

@@ -34,8 +34,15 @@ jQuery(document).ready(function($){
 	    file_frame.on( 'select', function() {
 			// We set multiple to false so only get one image from the uploader
 			attachment = file_frame.state().get('selection').first().toJSON();
+
+			// Check if selected image has been existed
+			if( $('.wc-lookbook-image-wrap[data-image-id="'+attachment.id+'"]').length > 0 ){
+				alert( wc_lookbook_editor_params.no_duplicate_message.replace( '%filename%', attachment.filename ) );
+
+				return;
+			}
  
-				// Prepare template
+			// Prepare template
 			image_wrap = $('#template-wc-lookbook-image-wrap').clone().html();
 			image_wrap.replace( '%image_id%', attachment.id );
 
