@@ -59,4 +59,34 @@ jQuery(document).ready(function($){
 	    // Finally, open the modal
 	    file_frame.open();
 	});
+
+	/**
+	* Removing image mechanism
+	*/
+	$('body').on( 'click', '.image-remove', function(e){
+		e.preventDefault();
+
+		$(this).parents('.image-wrap').remove();
+
+		/**
+		* Display no image yet notice if there's no more image-wrap
+		*/
+		if( $('.image-wrap').length == 0 ){
+			$('.no-image-notice').show();
+		}
+	});
+
+	/**
+	* Removing all image mechanism
+	*/
+	$('body').on( 'click', '.image-remove-all', function(e){
+		e.preventDefault();
+
+		$('.image-wrap').remove();
+
+		/**
+		* Display no image yet notice
+		*/
+		$('.no-image-notice').show();
+	});
 });
