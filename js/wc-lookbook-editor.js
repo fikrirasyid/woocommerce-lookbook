@@ -27,40 +27,45 @@ jQuery(document).ready(function($){
 
 	    // Create the media frame.
 	    file_frame = wp.media.frames.file_frame = wp.media({
-	      multiple: false  // Set to true to allow multiple files to be selected
+	      multiple: true  // Set to true to allow multiple files to be selected
 	    });
 	 
 	    // When an image is selected, run a callback.
 	    file_frame.on( 'select', function() {
 			// We set multiple to false so only get one image from the uploader
-			attachment = file_frame.state().get('selection').first().toJSON();
+			attachments = file_frame.state().get('selection').toJSON();
 
-			// Check if selected image has been existed
-			if( $('.wc-lookbook-image-wrap[data-image-id="'+attachment.id+'"]').length > 0 ){
-				alert( wc_lookbook_editor_params.no_duplicate_message.replace( '%filename%', attachment.filename ) );
+			for (var i = attachments.length - 1; i >= 0; i--) {
+				var attachment = attachments[i];
 
-				return;
-			}
- 
-			// Prepare template
-			image_wrap = $('#template-wc-lookbook-image-wrap').clone().html();
-			image_wrap.replace( '%image_id%', attachment.id );
+				// Check if selected image has been existed
+				if( $('.wc-lookbook-image-wrap[data-image-id="'+attachment.id+'"]').length > 0 ){
+					alert( wc_lookbook_editor_params.no_duplicate_message.replace( '%filename%', attachment.filename ) );
 
-			// Prepare input name
-			var name_image_id 		= "lookbook[]['"+attachment.id+"']['image_id']";
-			var name_image_caption 	= "lookbook[]['"+attachment.id+"']['image_caption']";
+					continue;
+				}
+	 
+				// Prepare template
+				image_wrap = $('#template-wc-lookbook-image-wrap').clone().html();
+				image_wrap.replace( '%image_id%', attachment.id );
 
-			// Append
-			$('.images-wrap').append( image_wrap );
+				// Prepare input name
+				var name_image_id 		= "lookbook[]['"+attachment.id+"']['image_id']";
+				var name_image_caption 	= "lookbook[]['"+attachment.id+"']['image_caption']";
 
-			// Modify data
-			$('.images-wrap .wc-lookbook-image-wrap:last, .images-wrap .wc-lookbook-image-wrap:last .wc-lookbook-image-tags').attr({ 'data-image-id' : attachment.id });
-			$('.images-wrap .wc-lookbook-image-wrap:last img').attr({ 'src' : attachment.url, 'alt' : attachment.caption });
-			$('.images-wrap .wc-lookbook-image-wrap:last .wc-lookbook-image-id').attr({ 'name' : name_image_id, 'value' : attachment.id });
-			$('.images-wrap .wc-lookbook-image-wrap:last .wc-lookbook-image-caption').attr({ 'name' : name_image_caption, 'value' : attachment.caption });
+				// Append
+				$('.images-wrap').append( image_wrap );
 
-			// Hide no image notice
-			$('.no-wc-lookbook-image-notice').hide();
+				// Modify data
+				$('.images-wrap .wc-lookbook-image-wrap:last, .images-wrap .wc-lookbook-image-wrap:last .wc-lookbook-image-tags').attr({ 'data-image-id' : attachment.id });
+				$('.images-wrap .wc-lookbook-image-wrap:last img').attr({ 'src' : attachment.url, 'alt' : attachment.caption });
+				$('.images-wrap .wc-lookbook-image-wrap:last .wc-lookbook-image-id').attr({ 'name' : name_image_id, 'value' : attachment.id });
+				$('.images-wrap .wc-lookbook-image-wrap:last .wc-lookbook-image-caption').attr({ 'name' : name_image_caption, 'value' : attachment.caption });
+
+				// Hide no image notice
+				$('.no-wc-lookbook-image-notice').hide();
+
+			};			
 	    });
 	 
 	    // Finally, open the modal
