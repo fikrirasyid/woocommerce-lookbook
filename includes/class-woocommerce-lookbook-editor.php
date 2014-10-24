@@ -84,20 +84,14 @@ class WC_Lookbook_Editor{
 			<script id="template-image-wrap" type="text/template">
 				<div class="image-wrap">
 					<div class="image">
-						<img src="http://localhost/hijapedia/store/wp-content/uploads/sites/2/2014/03/MG_8274.jpg" alt="">						
+						<img src="" alt="">						
 
 						<div class="image-tags">
-							<div class="tag">
-								<span class="name">Dress Way</span>
-								<span class="actions">
-									<a href="#" class="remove"><span class="label">Remove</span></a>
-								</span>
-							</div>
 						</div><!-- .image-tags -->						
 					</div><!-- .image -->
 
 					<div class="image-fields">
-						<input type="number" name="lookbook[][%image_id%]['image_id']" value="%image_id%" />
+						<input type="number" class="image-id" name="lookbook[][%image_id%]['image_id']" value="%image_id%" />
 					</div>
 
 					<div class="image-actions">
