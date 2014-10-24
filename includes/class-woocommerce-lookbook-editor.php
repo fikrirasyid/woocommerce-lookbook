@@ -104,7 +104,7 @@ class WC_Lookbook_Editor{
 
 					<div class="wc-lookbook-image-actions">
 						<div class="wc-lookbook-inside">
-							<input type="text" name="lookbook[][%image_id%]['image_caption']" class="input-text wc-lookbook-image-caption" placeholder="<?php _e( 'Describe this image', 'woocommerce-lookbook' ); ?>">
+							<textarea name="lookbook[][%image_id%]['image_caption']" class="input-text wc-lookbook-image-caption" placeholder="<?php _e( 'Describe this image', 'woocommerce-lookbook' ); ?>"></textarea>
 							<a href="#" class="wc-lookbook-image-remove button"><?php _e( 'Remove', 'woocommerce-lookbook' ); ?></a>
 						</div>
 					</div>

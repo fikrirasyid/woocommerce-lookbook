@@ -20,7 +20,7 @@
 #lookbook-metabox .image {
   position: relative;
   float: left;
-  width: 50%;
+  width: 40%;
 }
 #lookbook-metabox .image .wc-lookbook-inside {
   padding: 10px;
@@ -74,7 +74,7 @@
 #lookbook-metabox .wc-lookbook-image-actions {
   position: relative;
   float: left;
-  width: 49%;
+  width: 59%;
 }
 #lookbook-metabox .wc-lookbook-image-actions .wc-lookbook-inside {
   display: block;
@@ -83,6 +83,7 @@
 }
 #lookbook-metabox .wc-lookbook-image-actions .wc-lookbook-image-caption {
   width: 100%;
+  resize: none;
 }
 #lookbook-metabox .wc-lookbook-image-actions .wc-lookbook-image-remove {
   margin-top: 10px;
