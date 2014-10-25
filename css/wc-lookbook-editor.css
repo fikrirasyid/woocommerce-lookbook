@@ -121,6 +121,11 @@
   width: 100%;
   resize: none;
 }
+#lookbook-metabox .wc-lookbook-image-actions .wc-lookbook-image-tip {
+  margin: 5px 0 0;
+  font-size: 13px;
+  color: #afafaf;
+}
 #lookbook-metabox .wc-lookbook-image-actions .wc-lookbook-image-remove {
   margin-top: 10px;
 }
