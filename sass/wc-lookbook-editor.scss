@@ -28,6 +28,14 @@
 		background: white;
 		box-shadow: 0 1px 2px #f9f9f9;
 		float:left;
+		position: relative;
+
+		&.active{
+			.image{
+				position: relative;
+				z-index: 1100;
+			}
+		}
 	}
 
 	.image{
@@ -36,7 +44,6 @@
 		width: 40%;
 
 		.wc-lookbook-inside{
-			padding: 10px;
 			display: block;
 			border-right: 1px solid #dfdfdf;
 		}
@@ -146,3 +153,32 @@
 		}
 	}
 }
+
+#product-finder-wrap{
+	width: 200px;
+	padding: 5px;
+	border: 1px solid #cfcfcf;
+	border-radius: 5px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	z-index: 1200;
+	position: fixed;
+	background: white;
+}
+
+#product-finder-modal{
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #000;
+	opacity: .8;
+	z-index: 1000;
+	display: none;
+}
+
+// Load Plugins
+@import "select2";

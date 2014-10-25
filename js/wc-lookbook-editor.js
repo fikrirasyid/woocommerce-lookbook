@@ -47,7 +47,6 @@ jQuery(document).ready(function($){
 	 
 				// Prepare template
 				image_wrap = $('#template-wc-lookbook-image-wrap').clone().html();
-				image_wrap.replace( '%image_id%', attachment.id );
 
 				// Prepare input name
 				var name_image_id 		= "lookbook[]['"+attachment.id+"']['image_id']";
@@ -101,4 +100,91 @@ jQuery(document).ready(function($){
 		*/
 		$('.no-wc-lookbook-image-notice').show();
 	});
+
+	/**
+	* Product finder
+	*/
+	$('#product-finder').select2({
+		id: function(e) { return e.id }, 
+	    minimumInputLength: 2,
+    	width: '100%',
+    	placeholder: wc_lookbook_editor_params.product_finder_placeholder,
+	    ajax: {
+	    	url 		: wc_lookbook_editor_params.ajax_url,
+	    	dataType 	: 'json',
+	    	type 		: "POST",
+	    	data 		: function( term, page ){
+	    		return{
+	    			wp_ajax	: true,
+	    			action 	: 'wc_lookbook_product_finder',
+	    			_n		: wc_lookbook_editor_params.product_finder_nonce,
+	    			keyword : term
+	    		}
+	    	},
+	    	results: function( data, page ){
+	    		return{
+	    			results: data
+	    		}
+	    	}
+	    }
+	}).on('select2-selecting', function(e){
+		
+		product_finder_hide();
+	});
+
+
+	/**
+	* Display product finder to tag product on lookbook image
+	*/
+	$('body').on( 'click', '.wc-lookbook-image-mousetrap', function(e){
+		e.preventDefault();
+
+		var mousetrap 		 		= $(this),
+			mousetrap_width 		= mousetrap.outerWidth(),
+			mousetrap_height 		= mousetrap.outerHeight(),
+			mousetrap_offset 		= mousetrap.offset(), 
+			doc_x 			 		= mousetrap_offset.left,
+			doc_y 			 		= mousetrap_offset.top,
+			x 	  			 		= ( ( ( e.pageX - doc_x ) / mousetrap_width ) * 100 ).toFixed( 2 ), // top percentage relative to the mousetrap
+			y 	 			 		= ( ( ( e.pageY - doc_y ) / mousetrap_height ) * 100 ).toFixed( 2 ), // left percentage relative to the mousetrap
+			window_scrolltop 		= $(window).scrollTop(),
+			product_finder_height 	= $('#product-finder-wrap').height(),
+			product_finder_width 	= $('#product-finder-wrap').width(),
+			product_finder_x 		= doc_x + ( ( mousetrap_width / 100 ) * x ) - ( product_finder_width / 2 ),
+			product_finder_y 		= ( doc_y - window_scrolltop ) + ( ( mousetrap_height / 100 ) * y );
+
+		// Display product finder
+		product_finder_show( product_finder_x, product_finder_y, mousetrap, x, y );
+
+		// Prepare template
+		image_tag 		= $('#template-wc-lookbook-image-tag').clone().html();
+		image_tag_field = $('#template-wc-lookbook-image-tag-field').clone().html();
+	});
+
+	/**
+	* Close product finder tag mechanism
+	*/
+	$('body').on( 'click', '#product-finder-modal', function(e){
+		e.preventDefault();
+
+		product_finder_hide();
+	})
+
+	function product_finder_show( x, y, mousetrap, tag_x, tag_y ){
+		$('body').css({ 'overflow' : 'hidden' });
+		$('#product-finder-wrap').show().css({ 'top' : y, 'left' : x }).attr({ 'data-tag-x' : tag_x, 'data-tag-y' : tag_y });
+		$('#product-finder-modal').show();
+		$('#product-finder').select2( 'open' );
+
+		mousetrap.parents('.wc-lookbook-image-wrap').addClass('active');
+	}
+
+	function product_finder_hide(){
+		$('body').css({ 'overflow' : 'auto' });
+		$('#product-finder-wrap').hide().removeAttr('data-tag-x data-tag-y');
+		$('#product-finder-modal').hide();
+		$('#product-finder').select2( 'val', '' );
+
+		$('.wc-lookbook-image-wrap.active').removeClass('active');
+	}
 });

@@ -14,8 +14,10 @@ class WC_Lookbook_Editor{
 	function __construct(){
 		$this->prefix = "_wc_lookbook_";
 
-		add_action( 'admin_print_styles', 	array( $this, 'enqueue_scripts' ) );	
-		add_action( 'add_meta_boxes', 		array( $this, 'register_meta_box' ) );	
+		add_action( 'admin_print_styles', 							array( $this, 'enqueue_scripts' ) );	
+		add_action( 'add_meta_boxes', 								array( $this, 'register_meta_box' ) );	
+		add_action( 'wp_ajax_wc_lookbook_product_finder', 			array( $this, 'endpoint_product_finder' ) );
+		add_action( 'wp_ajax_nopriv_wc_lookbook_product_finder', 	array( $this, 'endpoint_product_finder' ) );
 	}
 
 	/**
@@ -35,12 +37,16 @@ class WC_Lookbook_Editor{
 			$screen = get_current_screen();
 
 			if( 'lookbook' == $screen->post_type ){
+		        wp_register_script( 'jquery-select2', WC_LOOKBOOK_URL . 'js/select2.js', array( 'jquery' ), '3.5.1', true );
 
 				wp_enqueue_style( 'wc_lookbook_editor', WC_LOOKBOOK_URL . 'css/wc-lookbook-editor.css', array(), false, 'all' );
-		        wp_enqueue_script( 'wc_lookbook_editor', WC_LOOKBOOK_URL . 'js/wc-lookbook-editor.js', array( 'jquery', 'jquery-ui-sortable' ), '0.1', true );
+		        wp_enqueue_script( 'wc_lookbook_editor', WC_LOOKBOOK_URL . 'js/wc-lookbook-editor.js', array( 'jquery', 'jquery-ui-sortable', 'jquery-select2' ), '0.1', true );
 				
 				$wc_lookbook_editor_params = array(
-					'no_duplicate_message' => __( '%filename% image have been added to this lookbook before. You cannot have one image more than once in a lookbook.', 'woocommerce-lookbook')
+					'no_duplicate_message' 			=> __( '%filename% image have been added to this lookbook before. You cannot have one image more than once in a lookbook.', 'woocommerce-lookbook'),
+					'ajax_url'						=> admin_url( 'admin-ajax.php' ),
+					'product_finder_placeholder'	=> __( 'Search and Select Product', 'woocommerce-lookbook' ),
+					'product_finder_nonce'			=> wp_create_nonce( 'product_finder_nonce' )
 				);
 				wp_localize_script( 'wc_lookbook_editor', 'wc_lookbook_editor_params', $wc_lookbook_editor_params );
 			}
@@ -85,6 +91,11 @@ class WC_Lookbook_Editor{
 					<a href="#" class="wc-lookbook-image-add button button-large button-primary"><?php _e( 'Add Image', 'woocommerce-lookbook' ); ?></a>				
 					<a href="#" class="wc-lookbook-image-remove-all button button-large"><?php _e( 'Remove All Images', 'woocommerce-lookbook' ); ?></a>				
 			</div>
+			
+			<div id="product-finder-wrap">
+				<input type="text" id="product-finder" placeholder="<?php _e( 'Find product', 'woocommerce-lookbook' ); ?>">
+			</div><!-- #product-finder-wrap -->
+			<div id="product-finder-modal"></div>
 	
 			<!-- Template for wc-lookbook-image-wrap -->
 			<script id="template-wc-lookbook-image-wrap" type="text/template">
@@ -94,11 +105,11 @@ class WC_Lookbook_Editor{
 							<img src="" alt="">				
 						</div>			
 
-						<div class="wc-lookbook-image-mousetrap">
-						</div><!-- .wc-lookbook-image-tags -->					
-
 						<div class="wc-lookbook-image-tags">
 						</div><!-- .wc-lookbook-image-tags -->						
+
+						<div class="wc-lookbook-image-mousetrap">
+						</div><!-- .wc-lookbook-image-tags -->											
 					</div><!-- .image -->
 
 					<div class="wc-lookbook-image-fields">
@@ -125,7 +136,7 @@ class WC_Lookbook_Editor{
 			</script>
 
 			<!-- Template for appending product tag -->
-			<script id="template-wc-lookbook-image-field-tag" type="text/template">
+			<script id="template-wc-lookbook-image-tag-field" type="text/template">
 				<div class="wc-lookbook-image-field-tag" data-image-id="%image_id%" data-product-id="%product_id%">
 					<input type="number" name="lookbook[][%image_id%]['tags'][%product_id%]['product_id']" value="%product_id%" />
 					<input type="number" name="lookbook[][%image_id%]['tags'][%product_id%]['offset_x']" value="%offset_x%" />
@@ -146,7 +157,50 @@ class WC_Lookbook_Editor{
 	 * @return void
 	 */
 	public function save_meta_box( $post_id ){
+	}
 
+	/**
+	 * Product finder endpoint
+	 * 
+	 * @access public
+	 * 
+	 * @return void  echoing json output
+	 */
+	public function endpoint_product_finder(){
+
+		$output = array();
+
+		if( isset( $_REQUEST['keyword'] ) && isset( $_REQUEST['_n'] ) && '' != $_REQUEST['keyword'] ){
+
+			/**
+			 * Verify nonce
+			 */
+			if( wp_verify_nonce( $_REQUEST['_n'], 'product_finder_nonce' ) ){
+
+				$args = array(
+					'post_status' 			=> 'publish',
+					'post_type'				=> 'product',
+					'edit_posts_per_page' 	=> 10,
+					's'						=> sanitize_text_field( $_REQUEST['keyword'] )
+				);
+
+				$posts = get_posts( $args );
+
+				if( $posts ){
+
+					foreach ( $posts as $post ) {
+						$output[] = array(
+							'id' 	=> $post->ID,
+							'text'	=> $post->post_title
+						);
+					}
+				}
+			}
+		}
+
+		echo json_encode( $output );
+
+		die();
 	}
 }
 new WC_Lookbook_Editor;
