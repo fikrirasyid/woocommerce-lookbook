@@ -128,7 +128,39 @@ jQuery(document).ready(function($){
 	    	}
 	    }
 	}).on('select2-selecting', function(e){
-		
+		// Prepare variable
+		product_finder_wrap = $('#product-finder-wrap');
+		tag_x 				= product_finder_wrap.attr( 'data-tag-x' );
+		tag_y 				= product_finder_wrap.attr( 'data-tag-y' );
+		product_id 			= e.object.id;
+		product_name 		= e.object.text;
+		image_wrap 			= $('.wc-lookbook-image-wrap.active');
+		image_id 			= image_wrap.attr('data-image-id');
+
+		// Prepare template
+		image_tag 		= $('#template-wc-lookbook-image-tag').clone().html();
+		image_tag_field = $('#template-wc-lookbook-image-tag-field').clone().html();
+
+		// Append image tag
+		image_wrap.find('.wc-lookbook-image-tags').append( image_tag );
+
+		// Modify image tag param
+		tag 				= image_wrap.find( '.wc-lookbook-image-tags .tag:last');		
+		tag.find('.name').text( product_name );
+
+		// Tag positioning
+		image_wrap_width	= image_wrap.width();
+		tag_width			= tag.outerWidth() + 2;
+		tag_x_adjustment	= 0 - Math.ceil( ( tag_width / 2 ) );
+		tag.css({ 
+			'top' : tag_y + '%', 
+			'left' : tag_x + '%', 
+			'width' : tag_width + 'px', 
+			'margin-left' : tag_x_adjustment, 
+			'margin-top' : 5 
+		}).attr({ 'data-product-id' : product_id });
+
+
 		product_finder_hide();
 	});
 
@@ -155,10 +187,6 @@ jQuery(document).ready(function($){
 
 		// Display product finder
 		product_finder_show( product_finder_x, product_finder_y, mousetrap, x, y );
-
-		// Prepare template
-		image_tag 		= $('#template-wc-lookbook-image-tag').clone().html();
-		image_tag_field = $('#template-wc-lookbook-image-tag-field').clone().html();
 	});
 
 	/**
@@ -172,7 +200,7 @@ jQuery(document).ready(function($){
 
 	function product_finder_show( x, y, mousetrap, tag_x, tag_y ){
 		$('body').css({ 'overflow' : 'hidden' });
-		$('#product-finder-wrap').show().css({ 'top' : y, 'left' : x }).attr({ 'data-tag-x' : tag_x, 'data-tag-y' : tag_y });
+		$('#product-finder-wrap').show().css({ 'top' : y, 'left' : x, 'margin-top' : 6, 'margin-left' : -5 }).attr({ 'data-tag-x' : tag_x, 'data-tag-y' : tag_y });
 		$('#product-finder-modal').show();
 		$('#product-finder').select2( 'open' );
 

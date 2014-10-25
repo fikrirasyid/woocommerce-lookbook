@@ -1,3 +1,8 @@
+.sprites-sprite, #lookbook-metabox .wc-lookbook-image-tags .tag:before, #product-finder-wrap:before {
+  background-image: url('../images/sprites-s00dd81e069.png');
+  background-repeat: no-repeat;
+}
+
 #lookbook-metabox .inside {
   padding: 15px 10px 10px;
 }
@@ -41,6 +46,7 @@
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 1140;
 }
 #lookbook-metabox .wc-lookbook-image-tags {
   position: absolute;
@@ -55,8 +61,26 @@
   left: 0%;
   background: black;
   display: inline-block;
-  opacity: .8;
   border-radius: 5px;
+  z-index: 1150;
+}
+#lookbook-metabox .wc-lookbook-image-tags .tag:before {
+  display: inline-block;
+  text-indent: -999999em;
+  background-position: 0 -6px;
+  width: 12px;
+  height: 6px;
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  margin-left: -6px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  #lookbook-metabox .wc-lookbook-image-tags .tag:before {
+    background: url("../images/sprites-retina/tag-tail.png") transparent;
+    background-size: 100%;
+  }
 }
 #lookbook-metabox .wc-lookbook-image-tags .tag .name {
   display: inline-block;
@@ -130,6 +154,24 @@
   z-index: 1200;
   position: fixed;
   background: white;
+}
+#product-finder-wrap:before {
+  display: inline-block;
+  text-indent: -999999em;
+  background-position: 0 0;
+  width: 12px;
+  height: 6px;
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  margin-left: -6px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  #product-finder-wrap:before {
+    background: url("../images/sprites-retina/product-filter-tail.png") transparent;
+    background-size: 100%;
+  }
 }
 
 #product-finder-modal {

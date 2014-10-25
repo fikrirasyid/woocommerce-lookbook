@@ -1,3 +1,6 @@
+// Sprite-ing
+@import "sprites/*.png";
+
 // Mixins
 @mixin clearfix(){
 	&:after{
@@ -7,6 +10,27 @@
 		clear:both; 
 		visibility:hidden;	
 	}
+}
+
+// Replacing text with sprite
+@mixin sprite_replace_text( $name, $width, $height ){
+	display: inline-block;
+	text-indent: -999999em;
+	@include sprites-sprite( $name );
+	width: $width+px;
+	height: $height+px;
+	content: '';
+
+	@media
+	only screen and (-webkit-min-device-pixel-ratio: 2),
+	only screen and (   min--moz-device-pixel-ratio: 2),
+	only screen and (     -o-min-device-pixel-ratio: 2/1),
+	only screen and (        min-device-pixel-ratio: 2),
+	only screen and (                min-resolution: 192dpi),
+	only screen and (                min-resolution: 2dppx)   { 
+		background: url( '../images/sprites-retina/'+$name+'.png' ) transparent;
+		background-size: 100%;
+	}	
 }
 
 
@@ -60,6 +84,7 @@
 		right: 0;
 		bottom: 0;
 		left: 0;
+		z-index: 1140;
 	}
 
 	.wc-lookbook-image-tags{
@@ -75,8 +100,17 @@
 			left: 0%;
 			background: black;
 			display: inline-block;
-			opacity: .8;
+			// opacity: .8;
 			border-radius: 5px;
+			z-index: 1150;
+
+			&:before{
+				@include sprite_replace_text( 'tag-tail', 12, 6 );
+				position: absolute;
+				top: -6px;
+				left: 50%;
+				margin-left: -6px;				
+			}
 	
 			.name{
 				display: inline-block;
@@ -166,6 +200,14 @@
 	z-index: 1200;
 	position: fixed;
 	background: white;
+
+	&:before{
+		@include sprite_replace_text( 'product-filter-tail', 12, 6 );
+		position: absolute;
+		top: -6px;
+		left: 50%;
+		margin-left: -6px;
+	}
 }
 
 #product-finder-modal{
