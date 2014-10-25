@@ -47,6 +47,7 @@
   bottom: 0;
   left: 0;
   z-index: 1140;
+  cursor: crosshair;
 }
 #lookbook-metabox .wc-lookbook-image-tags {
   position: absolute;
