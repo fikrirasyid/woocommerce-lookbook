@@ -174,9 +174,8 @@ jQuery(document).ready(function($){
 		product_finder_hide();
 	});
 
-
 	/**
-	* Display product finder to tag product on lookbook image
+	* Adding tag: display product finder to tag product on lookbook image
 	*/
 	$('body').on( 'click', '.wc-lookbook-image-mousetrap', function(e){
 		e.preventDefault();
@@ -225,4 +224,20 @@ jQuery(document).ready(function($){
 
 		$('.wc-lookbook-image-wrap.active').removeClass('active');
 	}
+
+	/**
+	* Removing tag
+	*/
+	$('body').on( 'click', '.wc-lookbook-tag-remove', function(e){
+		e.preventDefault();
+
+		// Preparing variables
+		var click 		= $(this);
+		var product_id 	= click.parents( '.tag' ).attr( 'data-product-id' );
+		var image_wrap 	= click.parents('.wc-lookbook-image-wrap');
+
+		// Remove tag and field tag
+		image_wrap.find('.tag[data-product-id="'+product_id+'"]').remove();
+		image_wrap.find('.wc-lookbook-image-field-tag[data-product-id="'+product_id+'"]').remove();
+	});
 });

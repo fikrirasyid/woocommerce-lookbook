@@ -91,15 +91,15 @@
   text-decoration: none;
   color: white;
 }
-#lookbook-metabox .wc-lookbook-image-tags .tag .remove {
+#lookbook-metabox .wc-lookbook-image-tags .tag .wc-lookbook-tag-remove {
   position: absolute;
   top: 7px;
   right: 7px;
 }
-#lookbook-metabox .wc-lookbook-image-tags .tag .remove .label {
+#lookbook-metabox .wc-lookbook-image-tags .tag .wc-lookbook-tag-remove .label {
   display: none;
 }
-#lookbook-metabox .wc-lookbook-image-tags .tag .remove:after {
+#lookbook-metabox .wc-lookbook-image-tags .tag .wc-lookbook-tag-remove:after {
   content: "\f335";
   font-family: 'Dashicons';
 }

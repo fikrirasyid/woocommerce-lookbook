@@ -130,7 +130,7 @@ class WC_Lookbook_Editor{
 				<div class="tag">
 					<span class="name">%product_name%</span>
 					<span class="actions">
-						<a href="#" class="remove"><span class="label">Remove</span></a>
+						<a href="#" class="wc-lookbook-tag-remove"><span class="label">Remove</span></a>
 					</span>
 				</div>
 			</script>
