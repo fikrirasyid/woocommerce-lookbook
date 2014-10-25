@@ -137,6 +137,12 @@ jQuery(document).ready(function($){
 		image_wrap 			= $('.wc-lookbook-image-wrap.active');
 		image_id 			= image_wrap.attr('data-image-id');
 
+		// Validation. A product can only be used once in an image
+		if( image_wrap.find('.tag[data-product-id="'+product_id+'"]').length > 0 ){
+			alert( wc_lookbook_editor_params.no_duplicate_product.replace( '%productname%', product_name ) );
+			return;
+		}
+
 		// Prepare template
 		image_tag 		= $('#template-wc-lookbook-image-tag').clone().html();
 		image_tag_field = $('#template-wc-lookbook-image-tag-field').clone().html();

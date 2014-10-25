@@ -44,6 +44,7 @@ class WC_Lookbook_Editor{
 				
 				$wc_lookbook_editor_params = array(
 					'no_duplicate_message' 			=> __( '%filename% image have been added to this lookbook before. You cannot have one image more than once in a lookbook.', 'woocommerce-lookbook'),
+					'no_duplicate_product' 			=> __( '%productname% have been added to this image before. Product cannot be used more than once in an image.', 'woocommerce-lookbook'),
 					'ajax_url'						=> admin_url( 'admin-ajax.php' ),
 					'product_finder_placeholder'	=> __( 'Search and Select Product', 'woocommerce-lookbook' ),
 					'product_finder_nonce'			=> wp_create_nonce( 'product_finder_nonce' )
