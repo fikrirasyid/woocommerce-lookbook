@@ -1,0 +1,30 @@
+@mixin clearfix(){
+	&:after{
+		content:".";
+		display:block; 
+		height:0; 
+		clear:both; 
+		visibility:hidden;	
+	}
+}
+
+// Replacing text with sprite
+@mixin sprite_replace_text( $name, $width, $height ){
+	display: inline-block;
+	text-indent: -999999em;
+	@include sprites-sprite( $name );
+	width: $width+px;
+	height: $height+px;
+	content: '';
+
+	@media
+	only screen and (-webkit-min-device-pixel-ratio: 2),
+	only screen and (   min--moz-device-pixel-ratio: 2),
+	only screen and (     -o-min-device-pixel-ratio: 2/1),
+	only screen and (        min-device-pixel-ratio: 2),
+	only screen and (                min-resolution: 192dpi),
+	only screen and (                min-resolution: 2dppx)   { 
+		background: url( '../images/sprites-retina/'+$name+'.png' ) transparent;
+		background-size: 100%;
+	}	
+}
