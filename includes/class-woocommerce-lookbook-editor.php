@@ -82,7 +82,106 @@ class WC_Lookbook_Editor{
 		$lookbook = get_post_meta( $post->ID, "{$this->prefix}data", true );
 		?>
 			<div class="images-wrap">
-				
+				<?php 
+				if( is_array( $lookbook ) && ! empty( $lookbook ) ) :
+					foreach ( $lookbook as $image ) :
+						/**
+						 * Just in case there's no image id
+						 */
+						if( ! isset( $image['image_id'] ) )
+							continue;
+
+						$image_id = (int)$image['image_id'];
+
+						/**
+						 * Get image path
+						 */
+						$attachment = wp_get_attachment_image_src( intval( $image_id ), 'full' );
+
+						if( ! $attachment || ! isset( $attachment[0] ) )
+							continue;
+						?>
+
+						<div class="wc-lookbook-image-wrap" data-image-id="<?php echo $image['image_id']; ?>">
+							<div class="image">
+								<div class="wc-lookbook-inside">
+									<img src="<?php echo esc_attr( $attachment[0] );?>" alt="">		
+								</div>			
+
+								<div class="wc-lookbook-image-tags">
+									<?php
+										if( isset( $image['tags'] ) && is_array( $image['tags'] ) && ! empty( $image['tags'] ) ):
+											foreach ( $image['tags'] as $tag ) :
+
+											/**
+											 * product_id, offset_x, and offset_y must exist
+											 */
+											if( 
+												! isset( $tag['product_id'] ) || ! isset( $tag['offset_x'] ) || ! isset( $tag['offset_y'] ) ||
+												'' == $tag['product_id'] || '' == $tag['offset_x'] || '' == $tag['offset_y']
+											){
+												continue;
+											}
+
+											$product = get_post( $tag['product_id'] );
+											?>
+												<div class="tag" data-product-id="<?php echo $tag['product_id']; ?>" style="top: <?php echo "{$tag['offset_y']}%"; ?>; left: <?php echo "{$tag['offset_x']}%"; ?> ; width: 100px; margin-left: -50px; margin-top: 5px;">
+													<span class="name"><?php echo esc_attr( $product->post_title ); ?></span>
+													<span class="actions">
+														<a href="#" class="wc-lookbook-tag-remove"><span class="label">Remove</span></a>
+													</span>
+												</div>
+											<?php
+											endforeach;
+										endif;
+									?>
+								</div><!-- .wc-lookbook-image-tags -->						
+
+								<div class="wc-lookbook-image-mousetrap">
+								</div><!-- .wc-lookbook-image-tags -->											
+							</div><!-- .image -->
+
+							<div class="wc-lookbook-image-fields">
+								<input type="number" class="wc-lookbook-image-id" name="lookbook[<?php echo $image_id; ?>][image_id]" value="<?php echo $image_id; ?>" />
+									<?php
+										if( isset( $image['tags'] ) && is_array( $image['tags'] ) && ! empty( $image['tags'] ) ):
+											foreach ( $image['tags'] as $tag ) :
+
+											/**
+											 * product_id, offset_x, and offset_y must exist
+											 */
+											if( 
+												! isset( $tag['product_id'] ) || ! isset( $tag['offset_x'] ) || ! isset( $tag['offset_y'] ) ||
+												'' == $tag['product_id'] || '' == $tag['offset_x'] || '' == $tag['offset_y']
+											){
+												continue;
+											}
+
+											$product = get_post( $tag['product_id'] );
+											?>
+												<div class="wc-lookbook-image-field-tag" data-image-id="<?php echo $image_id; ?>" data-product-id="<?php echo $tag['product_id']; ?>">
+													<input type="number" class="product-id" name="lookbook[<?php echo $image_id; ?>][tags][<?php echo $tag['product_id']; ?>][product_id]" value="<?php echo $tag['product_id']; ?>" />
+													<input type="number" class="offset-x" name="lookbook[<?php echo $image_id; ?>][tags][<?php echo $tag['product_id']; ?>][offset_x]" value="<?php echo $tag['offset_x']; ?>" />
+													<input type="number" class="offset-y" name="lookbook[<?php echo $image_id; ?>][tags][<?php echo $tag['product_id']; ?>][offset_y]" value="<?php echo $tag['offset_y']; ?>" /> 					
+												</div>
+											<?php
+											endforeach;
+										endif;
+									?>
+							</div>
+
+							<div class="wc-lookbook-image-actions">
+								<div class="wc-lookbook-inside">
+									<textarea name="lookbook[<?php echo $image_id; ?>][image_caption]" class="input-text wc-lookbook-image-caption" placeholder="<?php _e( 'Describe this image', 'woocommerce-lookbook' ); ?>"><?php echo ( isset( $image['image_caption'] ) ? esc_attr( $image['image_caption'] ) : '' ); ?></textarea>
+									<a href="#" class="wc-lookbook-image-remove button"><?php _e( 'Remove', 'woocommerce-lookbook' ); ?></a>
+								</div>
+							</div>
+						</div><!-- .wc-lookbook-image-wrap -->
+
+						<?php 
+					endforeach;
+				endif; 
+				?>
 			</div>
 
 			<div class="no-wc-lookbook-image-notice">
@@ -115,12 +214,12 @@ class WC_Lookbook_Editor{
 					</div><!-- .image -->
 
 					<div class="wc-lookbook-image-fields">
-						<input type="number" class="wc-lookbook-image-id" name="lookbook[][%image_id%]['image_id']" value="%image_id%" />
+						<input type="number" class="wc-lookbook-image-id" name="lookbook[%image_id%][image_id]" value="%image_id%" />
 					</div>
 
 					<div class="wc-lookbook-image-actions">
 						<div class="wc-lookbook-inside">
-							<textarea name="lookbook[][%image_id%]['image_caption']" class="input-text wc-lookbook-image-caption" placeholder="<?php _e( 'Describe this image', 'woocommerce-lookbook' ); ?>"></textarea>
+							<textarea name="lookbook[%image_id%][image_caption]" class="input-text wc-lookbook-image-caption" placeholder="<?php _e( 'Describe this image', 'woocommerce-lookbook' ); ?>"></textarea>
 							<a href="#" class="wc-lookbook-image-remove button"><?php _e( 'Remove', 'woocommerce-lookbook' ); ?></a>
 						</div>
 					</div>
@@ -140,9 +239,9 @@ class WC_Lookbook_Editor{
 			<!-- Template for appending product tag -->
 			<script id="template-wc-lookbook-image-tag-field" type="text/template">
 				<div class="wc-lookbook-image-field-tag" data-image-id="%image_id%" data-product-id="%product_id%">
-					<input type="number" class="product-id" name="lookbook[][%image_id%]['tags'][%product_id%]['product_id']" value="%product_id%" />
-					<input type="number" class="offset-x" name="lookbook[][%image_id%]['tags'][%product_id%]['offset_x']" value="%offset_x%" />
-					<input type="number" class="offset-y" name="lookbook[][%image_id%]['tags'][%product_id%]['offset_y']" value="%offset_y%" /> 					
+					<input type="number" class="product-id" name="lookbook[%image_id%][tags][%product_id%][product_id]" value="%product_id%" />
+					<input type="number" class="offset-x" name="lookbook[%image_id%][tags][%product_id%][offset_x]" value="%offset_x%" />
+					<input type="number" class="offset-y" name="lookbook[%image_id%][tags][%product_id%][offset_y]" value="%offset_y%" /> 					
 				</div>
 			</script>
 		<?php
