@@ -16,6 +16,7 @@ class WC_Lookbook_Editor{
 
 		add_action( 'admin_print_styles', 							array( $this, 'enqueue_scripts' ) );	
 		add_action( 'add_meta_boxes', 								array( $this, 'register_meta_box' ) );	
+		add_action( 'save_post', 									array( $this, 'save_meta_box' ) );
 		add_action( 'wp_ajax_wc_lookbook_product_finder', 			array( $this, 'endpoint_product_finder' ) );
 		add_action( 'wp_ajax_nopriv_wc_lookbook_product_finder', 	array( $this, 'endpoint_product_finder' ) );
 	}
@@ -158,6 +159,37 @@ class WC_Lookbook_Editor{
 	 * @return void
 	 */
 	public function save_meta_box( $post_id ){
+		/**
+		 * If save_post is triggered from front end, there will be no get_current_screen() loaded. Stop the process.
+		 */
+		if( !function_exists( 'get_current_screen' ) ){
+			return;
+		}
+
+		$screen = get_current_screen();
+
+		// Only run this on lookbook editor screen
+		if ($screen != null && $screen->post_type != 'lookbook') 
+			return;
+
+		// Cancel if this is an autosave
+		if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+			return;
+
+		// Verify nonce
+		if( !isset( $_POST["{$this->prefix}meta_box"] ) || 
+			!wp_verify_nonce( $_POST["{$this->prefix}meta_box"], "{$this->prefix}meta_box" ) ) 
+			return;
+
+		// if our current user can't edit this post, bail
+		if( !current_user_can( 'edit_posts' ) ) return;		
+
+		// Save lookbook data
+		if( ! $_POST['lookbook'] || empty( $_POST['lookbook'] ) ){
+			update_post_meta( $post_id, "{$this->prefix}data", array() ); 			
+		} else {
+			update_post_meta( $post_id, "{$this->prefix}data", $_POST['lookbook'] ); 			
+		}
 	}
 
 	/**

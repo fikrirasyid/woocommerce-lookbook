@@ -49,8 +49,8 @@ jQuery(document).ready(function($){
 				image_wrap = $('#template-wc-lookbook-image-wrap').clone().html();
 
 				// Prepare input name
-				var name_image_id 		= "lookbook[]['"+attachment.id+"']['image_id']";
-				var name_image_caption 	= "lookbook[]['"+attachment.id+"']['image_caption']";
+				var name_image_id 		= "lookbook['"+attachment.id+"']['image_id']";
+				var name_image_caption 	= "lookbook['"+attachment.id+"']['image_caption']";
 
 				// Append
 				$('.images-wrap').append( image_wrap );
@@ -173,9 +173,9 @@ jQuery(document).ready(function($){
 			tag_field 		= image_wrap.find('.wc-lookbook-image-field-tag:last' );
 			
 			tag_field.attr({ 'data-image-id' : image_id , 'data-product-id' : product_id });
-			tag_field.find('.product-id').attr({ 'name' : "lookbook[]['"+image_id+"']['tags']['"+product_id+"']['product_id']", value : product_id });
-			tag_field.find('.offset-x').attr({ 'name' : "lookbook[]['"+image_id+"']['tags']['"+product_id+"']['offset_x']", value : tag_x });
-			tag_field.find('.offset-y').attr({ 'name' : "lookbook[]['"+image_id+"']['tags']['"+product_id+"']['offset_y']", value : tag_y });
+			tag_field.find('.product-id').attr({ 'name' : "lookbook['"+image_id+"']['tags']['"+product_id+"']['product_id']", value : product_id });
+			tag_field.find('.offset-x').attr({ 'name' : "lookbook['"+image_id+"']['tags']['"+product_id+"']['offset_x']", value : tag_x });
+			tag_field.find('.offset-y').attr({ 'name' : "lookbook['"+image_id+"']['tags']['"+product_id+"']['offset_y']", value : tag_y });
 
 		product_finder_hide();
 	});
