@@ -144,22 +144,32 @@ jQuery(document).ready(function($){
 		// Append image tag
 		image_wrap.find('.wc-lookbook-image-tags').append( image_tag );
 
-		// Modify image tag param
-		tag 				= image_wrap.find( '.wc-lookbook-image-tags .tag:last');		
-		tag.find('.name').text( product_name );
+			// Modify image tag param
+			tag 				= image_wrap.find( '.wc-lookbook-image-tags .tag:last');		
+			tag.find('.name').text( product_name );
 
-		// Tag positioning
-		image_wrap_width	= image_wrap.width();
-		tag_width			= tag.outerWidth() + 2;
-		tag_x_adjustment	= 0 - Math.ceil( ( tag_width / 2 ) );
-		tag.css({ 
-			'top' : tag_y + '%', 
-			'left' : tag_x + '%', 
-			'width' : tag_width + 'px', 
-			'margin-left' : tag_x_adjustment, 
-			'margin-top' : 5 
-		}).attr({ 'data-product-id' : product_id });
+			// Tag positioning
+			image_wrap_width	= image_wrap.width();
+			tag_width			= tag.outerWidth() + 2;
+			tag_x_adjustment	= 0 - Math.ceil( ( tag_width / 2 ) );
+			tag.css({ 
+				'top' : tag_y + '%', 
+				'left' : tag_x + '%', 
+				'width' : tag_width + 'px', 
+				'margin-left' : tag_x_adjustment, 
+				'margin-top' : 5 
+			}).attr({ 'data-product-id' : product_id });
 
+		// Append image tag field
+		image_wrap.find('.wc-lookbook-image-fields').append( image_tag_field );
+
+			// Modify image tag field
+			tag_field 		= image_wrap.find('.wc-lookbook-image-field-tag:last' );
+			
+			tag_field.attr({ 'data-image-id' : image_id , 'data-product-id' : product_id });
+			tag_field.find('.product-id').attr({ 'name' : "lookbook[]['"+image_id+"']['tags']['"+product_id+"']['product_id']", value : product_id });
+			tag_field.find('.offset-x').attr({ 'name' : "lookbook[]['"+image_id+"']['tags']['"+product_id+"']['offset_x']", value : tag_x });
+			tag_field.find('.offset-y').attr({ 'name' : "lookbook[]['"+image_id+"']['tags']['"+product_id+"']['offset_y']", value : tag_y });
 
 		product_finder_hide();
 	});

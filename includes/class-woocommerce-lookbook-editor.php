@@ -138,9 +138,9 @@ class WC_Lookbook_Editor{
 			<!-- Template for appending product tag -->
 			<script id="template-wc-lookbook-image-tag-field" type="text/template">
 				<div class="wc-lookbook-image-field-tag" data-image-id="%image_id%" data-product-id="%product_id%">
-					<input type="number" name="lookbook[][%image_id%]['tags'][%product_id%]['product_id']" value="%product_id%" />
-					<input type="number" name="lookbook[][%image_id%]['tags'][%product_id%]['offset_x']" value="%offset_x%" />
-					<input type="number" name="lookbook[][%image_id%]['tags'][%product_id%]['offset_y']" value="%offset_y%" /> 					
+					<input type="number" class="product-id" name="lookbook[][%image_id%]['tags'][%product_id%]['product_id']" value="%product_id%" />
+					<input type="number" class="offset-x" name="lookbook[][%image_id%]['tags'][%product_id%]['offset_x']" value="%offset_x%" />
+					<input type="number" class="offset-y" name="lookbook[][%image_id%]['tags'][%product_id%]['offset_y']" value="%offset_y%" /> 					
 				</div>
 			</script>
 		<?php
