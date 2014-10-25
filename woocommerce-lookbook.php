@@ -22,6 +22,7 @@ if (!defined('WC_LOOKBOOK_URL'))
  * Requiring external files
  */
 require_once( 'includes/class-woocommerce-lookbook-editor.php' );
+require_once( 'includes/class-woocommerce-lookbook-frontend.php' );
 
 /**
  * Setup plugin

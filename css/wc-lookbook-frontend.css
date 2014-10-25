@@ -1,0 +1,72 @@
+.sprites-sprite, .wc-lookbook a.wc-lookbook-image-tag:before {
+  background-image: url('../images/sprites-s00dd81e069.png');
+  background-repeat: no-repeat;
+}
+
+.wc-lookbook .wc-lookbook-tip {
+  text-align: center;
+  font-size: 14px;
+  color: #afafaf;
+  margin-bottom: 10px !important;
+}
+.wc-lookbook .wc-lookbook-image-wrap {
+  margin-bottom: 15px;
+  box-shadow: 0 1px 1px #fdfdfd;
+}
+.wc-lookbook .wc-lookbook-image {
+  position: relative;
+  padding: 0;
+  line-height: 0;
+}
+.wc-lookbook .wc-lookbook-image .image {
+  width: 100%;
+  margin: 0;
+}
+.wc-lookbook .wc-lookbook-image-tags {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.wc-lookbook a.wc-lookbook-image-tag {
+  position: absolute;
+  font-size: 13px;
+  text-decoration: none;
+  color: white;
+  background: black;
+  line-height: 1.1;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+  opacity: .9;
+}
+.wc-lookbook a.wc-lookbook-image-tag:before {
+  display: inline-block;
+  text-indent: -999999em;
+  background-position: 0 -6px;
+  width: 12px;
+  height: 6px;
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  margin-left: -6px;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .wc-lookbook a.wc-lookbook-image-tag:before {
+    background: url("../images/sprites-retina/tag-tail.png") transparent;
+    background-size: 100%;
+  }
+}
+.wc-lookbook .wc-lookbook-image-caption {
+  padding: 3px 10px 0;
+  font-size: 12px;
+  color: #afafaf;
+  border: 1px solid #efefef;
+  background: #fefefe;
+  border-top: none;
+}
+.wc-lookbook.hide-tags .wc-lookbook-image-tag {
+  display: none;
+}

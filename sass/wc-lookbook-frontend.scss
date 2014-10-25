@@ -1,0 +1,75 @@
+// Sprite-ing
+@import "sprites/*.png";
+
+// Mixins
+@import "mixins";
+
+// Styling
+.wc-lookbook{
+	.wc-lookbook-tip{
+		text-align: center;
+		font-size: 14px;
+		color: #afafaf;
+		margin-bottom: 10px !important;
+	}
+
+	.wc-lookbook-image-wrap{
+		margin-bottom: 15px;
+		box-shadow: 0 1px 1px #fdfdfd;
+	}
+
+	.wc-lookbook-image{
+		position: relative;
+		padding: 0;
+		line-height: 0;
+
+		.image{
+			width: 100%;
+			margin: 0;
+		}
+	}
+
+	.wc-lookbook-image-tags{
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+	a.wc-lookbook-image-tag{
+		position: absolute;
+		font-size: 13px;
+		text-decoration: none;
+		color: white;
+		background: black;
+		line-height: 1.1;
+		padding: 5px;
+		border-radius: 5px;
+		text-align: center;
+		opacity: .9;
+
+		&:before{
+			@include sprite_replace_text( 'tag-tail', 12, 6 );
+			position: absolute;
+			top: -6px;
+			left: 50%;
+			margin-left: -6px;				
+		}
+	}	
+
+	.wc-lookbook-image-caption{
+		padding: 3px 10px 0;
+		font-size: 12px;
+		color: #afafaf;
+		border: 1px solid #efefef;
+		background: #fefefe;
+		border-top: none;
+	}
+
+	&.hide-tags{
+		.wc-lookbook-image-tag{
+			display: none;
+		}
+	}
+}
