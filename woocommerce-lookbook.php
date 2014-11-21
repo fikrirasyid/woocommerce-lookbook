@@ -72,7 +72,7 @@ class WC_Lookbook_Setup{
 			'description'         => __( 'Lookbook for your WooCommerce Product', 'woocommerce-lookbook' ), // string
 			'public'              => true, // bool (default is FALSE)
 			'publicly_queryable'  => true, // bool (defaults to 'public').
-			'exclude_from_search' => true, // bool (defaults to FALSE - the default of 'internal')
+			'exclude_from_search' => apply_filters( 'woocommerce_lookbook_exclude_from_search', true ), // bool (defaults to FALSE - the default of 'internal')
 			'show_in_nav_menus'   => false, // bool (defaults to 'public')
 			'show_ui'             => true, // bool (defaults to 'public')
 			'show_in_menu'        => true, // bool (defaults to 'show_ui')
